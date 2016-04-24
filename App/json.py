@@ -26,24 +26,24 @@ def getDatosJSON(datos):
         AeroPartida = consJson['scheduledFlights'][0]['departureAirportFsCode']
         HoraPartida = consJson['scheduledFlights'][0]['departureTime'][11:]       # Hora_Partida
         HoraDestino = consJson['scheduledFlights'][0]['arrivalTime'][11:]         # Hora_Destino
-        EsJet = consJson['appendix']['equipments'][0]['jet']                 # Boolean: Es Jet?
+        EsJet = consJson['appendix']['equipments'][0]['jet']                      # Boolean: Es Jet?
         if AeroPartida == consJson['appendix']['airports'][0]['iata']:
-            AeroPartida = consJson['appendix']['airports'][0]['icao']        # Aeropuerto_Partida_ICAO
-            AeroDestino = consJson['appendix']['airports'][1]['icao']        # Aeropuerto_Destino_ICAO
-            LatPartida = consJson['appendix']['airports'][0]['latitude']     # Latitud_Partida
-            LngPartida = consJson['appendix']['airports'][0]['longitude']    # Longitud_Partida
+            AeroPartida = consJson['appendix']['airports'][0]['icao']             # Aeropuerto_Partida_ICAO
+            AeroDestino = consJson['appendix']['airports'][1]['icao']             # Aeropuerto_Destino_ICAO
+            LatPartida = consJson['appendix']['airports'][0]['latitude']          # Latitud_Partida
+            LngPartida = consJson['appendix']['airports'][0]['longitude']         # Longitud_Partida
             AltPartida = consJson['appendix']['airports'][0]['elevationFeet']     # Altitud_Partida
-            LatDestino = consJson['appendix']['airports'][1]['latitude']     # Latitud_Destino
-            LngDestino = consJson['appendix']['airports'][1]['longitude']    # Longitud_Destino
+            LatDestino = consJson['appendix']['airports'][1]['latitude']          # Latitud_Destino
+            LngDestino = consJson['appendix']['airports'][1]['longitude']         # Longitud_Destino
             AltDestino = consJson['appendix']['airports'][1]['elevationFeet']     # Altitud_Destino
         else:
-            AeroPartida = consJson['appendix']['airports'][1]['icao']        # Aeropuerto_Partida_ICAO
-            AeroDestino = consJson['appendix']['airports'][0]['icao']        # Aeropuerto_Destino_ICAO
-            LatPartida = consJson['appendix']['airports'][1]['latitude']     # Latitud_Partida
-            LngPartida = consJson['appendix']['airports'][1]['longitude']    # Longitud_Partida
+            AeroPartida = consJson['appendix']['airports'][1]['icao']             # Aeropuerto_Partida_ICAO
+            AeroDestino = consJson['appendix']['airports'][0]['icao']             # Aeropuerto_Destino_ICAO
+            LatPartida = consJson['appendix']['airports'][1]['latitude']          # Latitud_Partida
+            LngPartida = consJson['appendix']['airports'][1]['longitude']         # Longitud_Partida
             AltPartida = consJson['appendix']['airports'][1]['elevationFeet']     # Altitud_Partida
-            LatDestino = consJson['appendix']['airports'][0]['latitude']     # Latitud_Destino
-            LngDestino = consJson['appendix']['airports'][0]['longitude']    # Longitud_Destino
+            LatDestino = consJson['appendix']['airports'][0]['latitude']          # Latitud_Destino
+            LngDestino = consJson['appendix']['airports'][0]['longitude']         # Longitud_Destino
             AltDestino = consJson['appendix']['airports'][0]['elevationFeet']     # Altitud_Destino
             gm = geomag.GeoMag("WMM.COF")
         msg = gm.GeoMag(LatPartida, LngPartida, AltPartida)
