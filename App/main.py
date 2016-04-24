@@ -1,7 +1,7 @@
 ######>>>>>>  LISTOS PARA DESPEGAR <<<<<<###################
 # Aplicacion desarrollada para Nasa Space Apps Rosario #####
 ######>>>>>>   DATOS DE CONTACTO   <<<<<<###################
-#      Avila, Leilen      leiavila@gmail.com             ###
+#      Avila, Leilen      leilenavila@gmail.com          ###
 # Bolzan, Ana Emilia      anaemiliabolzan@hotmail.com    ###
 # Ladreyt, Alejandro      ladreyt.alejandro@hotmail.com  ###
 #     Ladreyt, Pablo      pabloladreyt@gmail.com         ###
