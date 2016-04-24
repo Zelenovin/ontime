@@ -11,22 +11,13 @@
 ############################################################
 
 from Tkinter import *
-from PIL import Image
-from PIL import ImageTk
 import xml
 import json
 import wx
 import wx.calendar as cal
 from math import *
 
-# to do
-
-# Poner el logo antes de que cargue el formulario
-# Comentar el codigo
-# Armar narrativa de como funciona
-# Datos de contacto
-# Interfaz en forma de ticket.
-
+# alertas= [NroAlerta: [Descripcion, color a mostrar]
 alertas = {0: ["El vuelo no presenta problemas climaticos", "#006400"],
            1: ["Vuelo con posibilidad de demoras", "yellow"],
            2: ["Posible cancelacion de vuelo", "red"]}
@@ -35,13 +26,15 @@ alertas = {0: ["El vuelo no presenta problemas climaticos", "#006400"],
 class Factores:
     def __init__(self, Humedad, Sky, Visibilidad, VientoCruzado):
         self.Humedad = Humedad                # Humedad Relativa
-        self.Sky = Sky                        # Condicion
+        self.Sky = Sky                        # Condicion climatica
         self.Visibilidad = Visibilidad        # Millas Terrestres
         self.VientoCruzado = VientoCruzado    # Nudos por hora
 
 
 def EstadoVuelo(Humedad, sky, Visibilidad, VientoCruzado):
-    if (sky == "VCTS" or sky == "TS" or sky == "IC" or
+# VCTS: Thunderstorm in vicinity, TS: Thunderstorm, IC: Ice Crystals
+# SN: Snow, SOG: Snow on the ground, SINICR: snow increasing rapidly
+    if (sky == "VCTS" or sky == "TS" or sky == "IC" or    
         sky == "SN" or sky == "SOG" or
         sky == "SNINCR" or Visibilidad < 0.124274):
         Stat = 2
@@ -137,10 +130,10 @@ def VerVuelo():
    #               6=OrientacionPistaPartida, 7=CodAeropuertoICAODestino,
    #               8=HorarioDestino, 9=LatitudDestino, 10=LongitudDestino,
    #               11=AltitudDestino, 12=OrientacionPistaDestino]
-    if datosConsJson != None:
+    if datosConsJson is not None:
         datosConsXML = xml.getDatosXML(datosConsJson[0], datosConsJson[6])
         # datosConsXML[0=Humedad, 1=EstadoClima,
-        #              2=Visibilidad(millas), 3=VientoCruzado]
+        #              2=Visibilidad(millas), 3=VientoCruzado(kt)]
         Partida = Factores(datosConsXML[0], datosConsXML[1], datosConsXML[2],
                           datosConsXML[3])
         datosConsXML = xml.getDatosXML(datosConsJson[7], datosConsJson[12])
@@ -152,5 +145,5 @@ def VerVuelo():
                                    Partida.Visibilidad, Partida.VientoCruzado)
         estadoText.set(alertas[max(EstadoDest, EstadoPart)][0])
         LblRespuesta.config(fg=alertas[max(EstadoDest, EstadoPart)][1],
-                            font=("Helvetica", 8,"bold"))
+                            font=("Helvetica", 8, "bold"))
 interfaz()
